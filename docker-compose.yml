@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    image: zen_order_management
+    container_name: zen_order_management_backend
+    command: python manage.py runserver 0.0.0.0:5000
+    ports:
+      - 8000
+    depends_on:
+        - migration
+
+  migration:
+    build: .
+    image: zen_order_management
+    volumes:
+        - .:/code
